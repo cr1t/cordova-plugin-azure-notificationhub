@@ -52,7 +52,8 @@
     } else {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     }
-    
+	
+	[[UIApplication sharedApplication] registerForRemoteNotifications];    
 }
 
 - (void)unregisterApplication:(CDVInvokedUrlCommand*)command
@@ -163,7 +164,7 @@
     }
     pluginResult.keepCallback = keepCalback;
     
-    [self success:pluginResult callbackId:self.callbackId];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
 
 -(void)failWithError:(NSError *)error
